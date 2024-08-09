@@ -106,48 +106,49 @@ Contact Area
                         <span class="sub-title">Contact With Us!</span>
                         <h2 class="border-title">Get in Touch</h2>
                         <p class="mt-n1 mb-30 sec-text">Lorem ipsum dolor sit amet adipiscing elit, sed do eiusmod tempor eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <form action="mail.php" method="POST" class="contact-form ajax-contact">
+                        <form action="{{ route('contact.store') }}" method="POST" class="contact-form ajax-contact">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control style-white" name="name" id="name" placeholder="Your Name*">
+                                        <input type="text" class="form-control style-white" name="name" id="name" placeholder="Nama Anda*">
                                         <i class="fal fa-user"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="email" class="form-control style-white" name="email" id="email" placeholder="Email Address*">
+                                        <input type="email" class="form-control style-white" name="email" id="email" placeholder="Email Anda*">
                                         <i class="fal fa-envelope"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <select name="subject" id="subject" class="single-select nice-select form-select style-white">
-                                            <option value="" disabled selected hidden>Select Subject*</option>
-                                            <option value="Web Design">Web Design</option>
-                                            <option value="Web Development">Web Development</option>
-                                            <option value="Engine Diagnostics">Engine Diagnostics</option>
-                                            <option value="Digital Marketing">Digital Marketing</option>
+                                        <select name="position" id="position" class="single-select nice-select form-select style-white">
+                                            <option value="" disabled selected hidden>Pilih Posisi Anda*</option>
+                                            <option value="Web Design">Siswa</option>
+                                            <option value="Web Development">Guru</option>
+                                            <option value="Engine Diagnostics">Pegawai</option>
+                                            <option value="Digital Marketing">Lain-lain</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="tel" class="form-control style-white" name="number" id="number" placeholder="Phone Number*">
+                                        <input type="tel" class="form-control style-white" name="telephone" id="telephone" placeholder="Nomor Telphone Anda*">
                                         <i class="fal fa-phone"></i>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group ">
-                                        <textarea name="message" id="message" cols="30" rows="3" class="form-control style-white" placeholder="Write Your Message*"></textarea>
+                                        <textarea name="message" id="message" cols="30" rows="3" class="form-control style-white" placeholder="Tulis Pesan Anda*"></textarea>
                                         <i class="fal fa-pen"></i>
                                     </div>
                                 </div>
                                 <div class="form-btn col-12 mt-10">
-                                    <button class="th-btn">Send Message<i class="fas fa-long-arrow-right ms-2"></i></button>
+                                    <button type="submit" class="th-btn submit">Send Nudes<i class="fas fa-long-arrow-right ms-2"></i></button>
                                 </div>
                             </div>
-                            <p class="form-messages mb-0 mt-3"></p>
+                            {{-- <p class="form-messages mb-0 mt-3"></p> --}}
                         </form>
                     </div>
                 </div>
@@ -164,6 +165,32 @@ Contact Area
     All Js File
 ============================== -->
     @include('layouts.main.scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).on('click', '.submit', function(e){
+            var notificationid = $(this).attr('data-id');
+            e.preventDefault();
+            const form = $(this).closest('form');
+            Swal.fire({
+            title: "Kirim komentar?",
+            text: "Anda akan mengirim komentar",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, kirim sekarang"
+            }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+                Swal.fire({
+                title: "Pesan Berhasil Terkirim",
+                text: "Komentar telah sampai ke Admin",
+                icon: "success"
+                });
+            }
+            });
+        });
+    </script>
 </body>
 
 </html>

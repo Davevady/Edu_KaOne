@@ -18,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
+Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');

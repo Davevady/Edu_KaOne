@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Contact;
 
 class ContactController extends Controller
 {
@@ -27,7 +28,16 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dataContact = new Contact();
+        $dataContact->name = $request->name;
+        $dataContact->email = $request->email;
+        $dataContact->position = $request->position;
+        $dataContact->telephone = $request->telephone;
+        $dataContact->message = $request->message;
+
+        $dataContact->save();
+
+        return redirect()->back()->with('succsess, Komentar berhasil dikirimpan');
     }
 
     /**
