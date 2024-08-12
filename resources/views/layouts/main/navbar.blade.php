@@ -187,7 +187,7 @@ Header Area
                                 </div>
                             </li>
                             <li class="d-none d-lg-inline-block">
-                                <i class="far fa-user"></i><a href="/contact">Login / Register</a>
+                                <i class="far fa-user"></i><a href="/login">Login / Register</a>
                             </li>
                         </ul>
                     </div>
@@ -202,7 +202,7 @@ Header Area
                 <div class="row align-items-center justify-content-between">
                     <div class="col-auto">
                         <div class="header-logo">
-                            <a href="index.html"><img src="assets/img/logo.svg" alt="Edura"></a>
+                            <a href="/"><img src="assets/img/logo.svg" alt="Edura"></a>
                         </div>
                     </div>
                     <div class="col-auto">
